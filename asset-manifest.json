@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/evolution-flies/static/css/main.c4f35a71.chunk.css",
+    "main.js": "/evolution-flies/static/js/main.9e342e44.chunk.js",
+    "main.js.map": "/evolution-flies/static/js/main.9e342e44.chunk.js.map",
+    "runtime-main.js": "/evolution-flies/static/js/runtime-main.e6186621.js",
+    "runtime-main.js.map": "/evolution-flies/static/js/runtime-main.e6186621.js.map",
+    "static/js/2.54ca32f1.chunk.js": "/evolution-flies/static/js/2.54ca32f1.chunk.js",
+    "static/js/2.54ca32f1.chunk.js.map": "/evolution-flies/static/js/2.54ca32f1.chunk.js.map",
+    "static/js/3.ce250440.chunk.js": "/evolution-flies/static/js/3.ce250440.chunk.js",
+    "static/js/3.ce250440.chunk.js.map": "/evolution-flies/static/js/3.ce250440.chunk.js.map",
+    "index.html": "/evolution-flies/index.html",
+    "static/css/main.c4f35a71.chunk.css.map": "/evolution-flies/static/css/main.c4f35a71.chunk.css.map",
+    "static/js/2.54ca32f1.chunk.js.LICENSE.txt": "/evolution-flies/static/js/2.54ca32f1.chunk.js.LICENSE.txt",
+    "static/media/1.ce4a2a7f.jpg": "/evolution-flies/static/media/1.ce4a2a7f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e6186621.js",
+    "static/js/2.54ca32f1.chunk.js",
+    "static/css/main.c4f35a71.chunk.css",
+    "static/js/main.9e342e44.chunk.js"
+  ]
+}
