@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Background from './components/Background/Background';
 import Butterfly from './components/Butterfly/Butterfly';
 import nextId from 'react-id-generator';
+import useKeyPress from './hooks/useKeyPress';
 import _ from 'lodash';
 
 function randomInt(max=360, min=0){
@@ -48,6 +49,7 @@ function mutate(fly){
 
 function App() {
   const [flies, setFlies] = useState(generateFlies(30));
+  const highContrast = useKeyPress('c');
 
   const removeFly = (id) => {
     setFlies(_.filter(flies, (fly) => fly.id !== id));
@@ -60,15 +62,15 @@ function App() {
     setFlies([...flies, ...newFlies]);
   };
 
-  if(flies.length < 27){
-    addFlies(4);
+  if(flies.length < 30){
+    addFlies(1);
   }
 
   console.log(flies.length);
   return (
     <Background>
       {flies.map((fly) => (
-        <Butterfly {...fly} onClick={() => removeFly(fly.id)}/>
+        <Butterfly {...fly} highContrast={highContrast} onClick={() => removeFly(fly.id)}/>
       ))}
     </Background>
   );

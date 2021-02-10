@@ -1,9 +1,9 @@
 import './Butterfly.css';
 
-function Background({rotate=0, color=[0,0,0], position=[0,0], onClick}) {
+function Background({rotate=0, color=[0,0,0], position=[0,0], onClick, highContrast=false}) {
   return (
     <svg
-      className="butterfly"
+      className={`butterfly ${highContrast && 'high-contrast'}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
       width="15px" height="15px"

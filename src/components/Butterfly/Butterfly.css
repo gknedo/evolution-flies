@@ -1,3 +1,8 @@
 svg.butterfly {
   position: absolute;
+  box-sizing: border-box;
+}
+
+svg.high-contrast {
+  border: 8px solid red;
 }
