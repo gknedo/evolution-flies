@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/evolution-flies/static/css/main.5721d016.chunk.css",
-    "main.js": "/evolution-flies/static/js/main.b88ee4a7.chunk.js",
-    "main.js.map": "/evolution-flies/static/js/main.b88ee4a7.chunk.js.map",
+    "main.js": "/evolution-flies/static/js/main.5364bf4a.chunk.js",
+    "main.js.map": "/evolution-flies/static/js/main.5364bf4a.chunk.js.map",
     "runtime-main.js": "/evolution-flies/static/js/runtime-main.aa55a508.js",
     "runtime-main.js.map": "/evolution-flies/static/js/runtime-main.aa55a508.js.map",
     "static/js/2.7d84ec38.chunk.js": "/evolution-flies/static/js/2.7d84ec38.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.aa55a508.js",
     "static/js/2.7d84ec38.chunk.js",
     "static/css/main.5721d016.chunk.css",
-    "static/js/main.b88ee4a7.chunk.js"
+    "static/js/main.5364bf4a.chunk.js"
   ]
 }
