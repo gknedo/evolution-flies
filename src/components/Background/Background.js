@@ -1,11 +1,10 @@
 import './Background.css';
-import image1 from './images/1.jpg'
 
-function Background({children}) {
+function Background({image, children}) {
   return (
       <div
         className='background'
-        style={{backgroundImage: `url(${image1})`}}
+        style={{backgroundImage: `url(${image})`}}
       >
         {children}
       </div>

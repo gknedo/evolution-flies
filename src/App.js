@@ -4,7 +4,8 @@ import Butterfly from './components/Butterfly/Butterfly';
 import Menu from './components/Menu/Menu';
 import nextId from 'react-id-generator';
 import useKeyPress from './hooks/useKeyPress';
-import _, { matchesProperty } from 'lodash';
+import _ from 'lodash';
+import { availableBackgrounds } from './components/Background/BackgroundUtils'
 
 const map = {
   width: window.innerWidth,
@@ -57,7 +58,9 @@ function mutate(fly){
 function App() {
   const [flies, setFlies] = useState(generateFlies(30));
   const [menuState, setMenuState] = useState(false);
-  const [options, setOptions] = useState({});
+  const [options, setOptions] = useState({
+    background: availableBackgrounds[0],
+  });
   const keyPressed = useKeyPress('Escape');
   useEffect(() => {
     if(keyPressed) setMenuState(!menuState);
@@ -80,7 +83,7 @@ function App() {
 
   console.log(flies.length);
   return (
-    <Background>
+    <Background image={options.background.image}>
       {flies.map((fly) => (
         <Butterfly
           {...fly}
