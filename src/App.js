@@ -46,7 +46,7 @@ function mutate(fly){
     id: nextId(),
     rotate: randomFromInt(10, fly.rotate),
     color: fly.color.map((fcolor) => (
-      Math.max(0, Math.min(255, randomFromInt(15, fcolor)))
+      Math.max(0, Math.min(255, randomFromInt(30, fcolor)))
     )),
     position: [
       ((randomFromInt(125, fly.position[0]) + map.width) % (map.width - 2 * map.border)) + map.border,
