@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Background from './components/Background/Background';
 import Butterfly from './components/Butterfly/Butterfly';
 import nextId from 'react-id-generator';
 import useKeyPress from './hooks/useKeyPress';
 import _ from 'lodash';
+
+const map = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
 
 function randomInt(max=360, min=0){
   return Math.floor(Math.random() * (max-min)) + min
@@ -25,8 +30,8 @@ function generateFlies(n){
         randomInt(256),
       ],
       position: [
-        randomInt(window.innerWidth - 40) + 20,
-        randomInt(window.innerHeight - 40) + 20,
+        randomInt(map.width),
+        randomInt(map.height),
       ]
     })
   }
@@ -41,15 +46,19 @@ function mutate(fly){
       Math.max(0, Math.min(255, randomFromInt(15, fcolor)))
     )),
     position: [
-      Math.max(20, Math.min(window.innerWidth - 20, randomFromInt(125, fly.position[0]))),
-      Math.max(20, Math.min(window.innerHeight - 20, randomFromInt(125, fly.position[1]))),
+      (randomFromInt(125, fly.position[0]) + map.width) % map.width,
+      (randomFromInt(125, fly.position[1]) + map.height) % map.height,
     ]
   }
 }
 
 function App() {
   const [flies, setFlies] = useState(generateFlies(30));
-  const highContrast = useKeyPress('c');
+  const [highContrast, setHighContrast] = useState(false);
+  const keyPressed = useKeyPress('Escape');
+  useEffect(() => {
+    if(keyPressed) setHighContrast(!highContrast);
+  }, [keyPressed]);
 
   const removeFly = (id) => {
     setFlies(_.filter(flies, (fly) => fly.id !== id));
