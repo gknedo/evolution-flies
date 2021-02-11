@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Background from './components/Background/Background';
 import Butterfly from './components/Butterfly/Butterfly';
+import Menu from './components/Menu/Menu';
 import nextId from 'react-id-generator';
 import useKeyPress from './hooks/useKeyPress';
 import _, { matchesProperty } from 'lodash';
@@ -55,10 +56,11 @@ function mutate(fly){
 
 function App() {
   const [flies, setFlies] = useState(generateFlies(30));
-  const [highContrast, setHighContrast] = useState(false);
+  const [menuState, setMenuState] = useState(false);
+  const [options, setOptions] = useState({});
   const keyPressed = useKeyPress('Escape');
   useEffect(() => {
-    if(keyPressed) setHighContrast(!highContrast);
+    if(keyPressed) setMenuState(!menuState);
   }, [keyPressed]);
 
   const removeFly = (id) => {
@@ -80,8 +82,20 @@ function App() {
   return (
     <Background>
       {flies.map((fly) => (
-        <Butterfly {...fly} highContrast={highContrast} onClick={() => removeFly(fly.id)}/>
+        <Butterfly
+          {...fly}
+          highContrast={options.highContrast}
+          onClick={() => removeFly(fly.id)}
+        />
       ))}
+      {menuState &&
+        <Menu
+          menuState={menuState}
+          setMenuState={setMenuState}
+          options={options}
+          setOptions={setOptions}
+        />
+      }
     </Background>
   );
 }
