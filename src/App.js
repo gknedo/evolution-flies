@@ -77,8 +77,8 @@ function App() {
     setFlies([...flies, ...newFlies]);
   };
 
-  if(flies.length < 30){
-    addFlies(1);
+  if(flies.length < 26){
+    addFlies(5);
   }
 
   console.log(flies.length);
