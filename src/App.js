@@ -3,11 +3,12 @@ import Background from './components/Background/Background';
 import Butterfly from './components/Butterfly/Butterfly';
 import nextId from 'react-id-generator';
 import useKeyPress from './hooks/useKeyPress';
-import _ from 'lodash';
+import _, { matchesProperty } from 'lodash';
 
 const map = {
   width: window.innerWidth,
   height: window.innerHeight,
+  border: 20,
 };
 
 function randomInt(max=360, min=0){
@@ -30,8 +31,8 @@ function generateFlies(n){
         randomInt(256),
       ],
       position: [
-        randomInt(map.width),
-        randomInt(map.height),
+        randomInt(map.width - 2 * map.border) + map.border,
+        randomInt(map.height -2 * map.border) + map.border,
       ]
     })
   }
@@ -46,8 +47,8 @@ function mutate(fly){
       Math.max(0, Math.min(255, randomFromInt(15, fcolor)))
     )),
     position: [
-      (randomFromInt(125, fly.position[0]) + map.width) % map.width,
-      (randomFromInt(125, fly.position[1]) + map.height) % map.height,
+      ((randomFromInt(125, fly.position[0]) + map.width) % (map.width - 2 * map.border)) + map.border,
+      ((randomFromInt(125, fly.position[1]) + map.height) % (map.height - 2 * map.border)) + map.border,
     ]
   }
 }
