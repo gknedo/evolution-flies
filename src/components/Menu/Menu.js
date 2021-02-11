@@ -5,7 +5,6 @@ function Menu({setMenuState, options, setOptions}) {
   const changeContrast = () => (
     setOptions({...options, highContrast: !options.highContrast})
   );
-  console.log(options);
 
   return (
     <div className="menu">

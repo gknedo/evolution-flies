@@ -55,31 +55,50 @@ function mutate(fly){
   }
 }
 
+const mutateFlies = (flies, n) => {
+  const newFlies = [];
+  while(newFlies.length < n)
+    newFlies.push(mutate(_.sample(flies)));
+  return [...flies, ...newFlies];
+};
+
+function now(){
+  return Math.floor(new Date().getTime()/1000);
+}
+
 function App() {
   const [flies, setFlies] = useState(generateFlies(30));
   const [menuState, setMenuState] = useState(false);
   const [options, setOptions] = useState({
     background: availableBackgrounds[0],
+    population: {
+      max: 30,
+      min: 15,
+      repopulate_every: 7,
+      last_repulate: now(),
+    }
   });
+
   const keyPressed = useKeyPress('Escape');
   useEffect(() => {
     if(keyPressed) setMenuState(!menuState);
   }, [keyPressed]);
 
   const removeFly = (id) => {
-    setFlies(_.filter(flies, (fly) => fly.id !== id));
-  };
+    let filteredFlies = _.filter(flies, (fly) => fly.id !== id)
 
-  const addFlies = (n) => {
-    const newFlies = [];
-    while(newFlies.length < n)
-      newFlies.push(mutate(_.sample(flies)));
-    setFlies([...flies, ...newFlies]);
-  };
+    const repopulateByPop = filteredFlies.length < options.population.min;
+    const sinceLastRepopulate = now() - options.population.last_repulate;
+    const repopulateByTime = sinceLastRepopulate > options.population.repopulate_every;
+    
+    if(repopulateByPop || repopulateByTime){
+      setOptions({...options, population: {...options.population, last_repulate: now()}});
+      const repopulationSize = options.population.max - filteredFlies.length;
+      filteredFlies = mutateFlies(filteredFlies, repopulationSize);
+    }
 
-  if(flies.length < 26){
-    addFlies(5);
-  }
+    setFlies(filteredFlies);
+  };
 
   console.log(flies.length);
   return (
