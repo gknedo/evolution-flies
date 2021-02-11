@@ -67,14 +67,14 @@ function now(){
 }
 
 function App() {
-  const [flies, setFlies] = useState(generateFlies(30));
+  const [flies, setFlies] = useState(generateFlies(25));
   const [menuState, setMenuState] = useState(false);
   const [options, setOptions] = useState({
     background: availableBackgrounds[0],
     population: {
-      max: 30,
-      min: 15,
-      repopulate_every: 7,
+      max: 40,
+      min: 1,
+      repopulate_every: 1,
       last_repulate: now(),
     }
   });
@@ -87,14 +87,15 @@ function App() {
   const removeFly = (id) => {
     let filteredFlies = _.filter(flies, (fly) => fly.id !== id)
 
-    const repopulateByPop = filteredFlies.length < options.population.min;
     const sinceLastRepopulate = now() - options.population.last_repulate;
-    const repopulateByTime = sinceLastRepopulate > options.population.repopulate_every;
     
-    if(repopulateByPop || repopulateByTime){
-      setOptions({...options, population: {...options.population, last_repulate: now()}});
-      const repopulationSize = options.population.max - filteredFlies.length;
-      filteredFlies = mutateFlies(filteredFlies, repopulationSize);
+    if(sinceLastRepopulate){
+      const newFliesCount = Math.round(Math.sqrt(flies.length * 0.08 * sinceLastRepopulate))
+      const n = Math.min(options.population.max - filteredFlies.length, newFliesCount)
+      if(n > 0) {
+        setOptions({...options, population: {...options.population, last_repulate: now()}});
+        filteredFlies = mutateFlies(filteredFlies, n);
+      }
     }
 
     setFlies(filteredFlies);
