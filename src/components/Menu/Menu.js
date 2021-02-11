@@ -15,6 +15,7 @@ function Menu({setMenuState, options, setOptions}) {
       >
         {availableBackgrounds.map((background, index) => (
           <option
+            key={background.name}
             selected={options.background.name === background.name}
             value={index}
           >

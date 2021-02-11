@@ -86,6 +86,7 @@ function App() {
     <Background image={options.background.image}>
       {flies.map((fly) => (
         <Butterfly
+          key={fly.id}
           {...fly}
           highContrast={options.highContrast}
           onClick={() => removeFly(fly.id)}
